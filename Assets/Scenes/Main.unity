@@ -650,8 +650,9 @@ GameObject:
   - component: {fileID: 1574850177}
   - component: {fileID: 1574850176}
   - component: {fileID: 1574850175}
+  - component: {fileID: 1574850178}
   m_Layer: 5
-  m_Name: LevelRotator
+  m_Name: Controller
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -731,6 +732,20 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1574850173}
   m_CullTransparentMesh: 0
+--- !u!114 &1574850178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1574850173}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8ae11fad74034e868d4b2ea203b0fc1d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  ball: {fileID: 422326958}
+  forceFactor: 0.05
 --- !u!1001 &1709002130
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -979,7 +994,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 537982018}
-        m_MethodName: RestartLevel
+        m_MethodName: RestartScene
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
