@@ -2,9 +2,9 @@
 using UnityEngine.EventSystems;
 
 /// <summary>
-/// This class receives drag input and rotates level to drag delta.
+/// This class receives drag input and rotates level around pivot to drag delta.
 /// </summary>
-public class LevelRotator : MonoBehaviour, IDragHandler
+public class LevelRotator : Singleton<LevelRotator>, IDragHandler
 {
     [SerializeField] private GameObject level;
     [SerializeField] private GameObject pivot;
@@ -12,8 +12,11 @@ public class LevelRotator : MonoBehaviour, IDragHandler
     [SerializeField] private Vector2 xRotationLimits;
     [SerializeField] private Vector2 zRotationLimits;
 
+    public bool IsRotationEnabled { get; set; } = true;
+
     public void OnDrag(PointerEventData eventData)
     {
+        if (!IsRotationEnabled) return;
         RotateLevel(eventData.delta);
     }
 
@@ -31,7 +34,7 @@ public class LevelRotator : MonoBehaviour, IDragHandler
     /// <summary>
     /// Clamp rotation inside limits on x and z components.
     /// </summary>
-    /// <param name="delta"></param>
+    /// <param name="delta">Level rotation delta</param>
     private void ClampRotation(Vector2 delta)
     {
         ClampRotationOnAxis(delta.x, Vector3.back, zRotationLimits, rotationSensitivity.x);
@@ -57,5 +60,14 @@ public class LevelRotator : MonoBehaviour, IDragHandler
         {
             level.transform.RotateAround(pivot.transform.position, axis, -angleDelta * sensitivity);
         }
+    }
+
+    /// <summary>
+    /// Set new level to rotate around pivot.
+    /// </summary>
+    /// <param name="newLevel">New level</param>
+    public void SetNewLevel(GameObject newLevel)
+    {
+        level = newLevel;
     }
 }
