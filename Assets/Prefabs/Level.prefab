@@ -46,6 +46,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sphereLandingPoint: {fileID: 4919630805615689822}
+  maxBallDistance: 60
 --- !u!1001 &82111515920881664
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using UnityEngine.EventSystems;
+using UnityEngine.SceneManagement;
 
 /// <summary>
 /// This class receives drag input and rotates level around pivot to drag delta.
@@ -26,8 +27,10 @@ public class LevelRotator : Singleton<LevelRotator>, IDragHandler
     /// <param name="delta">Rotation angle delta</param>
     private void RotateLevel(Vector2 delta)
     {
-        level.transform.RotateAround(pivot.transform.position, Vector3.back, delta.x * rotationSensitivity.x);
-        level.transform.RotateAround(pivot.transform.position, Vector3.right, delta.y * rotationSensitivity.y);
+        level.transform.RotateAround(pivot.transform.position, Vector3.back,
+            delta.x * rotationSensitivity.x / Screen.width * 320);
+        level.transform.RotateAround(pivot.transform.position, Vector3.right,
+            delta.y * rotationSensitivity.y / Screen.height * 526);
         ClampRotation(delta);
     }
 

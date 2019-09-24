@@ -11,6 +11,8 @@ public class BallController : MonoBehaviour, IDragHandler
 
     public void OnDrag(PointerEventData eventData)
     {
-        ball.AddForce(new Vector3(eventData.delta.x, 0, eventData.delta.y) * forceFactor, ForceMode.Impulse);
+        ball.AddForce(
+            new Vector3(eventData.delta.x / Screen.width * 320, 0, eventData.delta.y / Screen.height * 526) *
+            forceFactor, ForceMode.Impulse);
     }
 }

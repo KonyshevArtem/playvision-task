@@ -6,8 +6,10 @@ using UnityEngine;
 public class Level : MonoBehaviour
 {
     [SerializeField] private GameObject sphereLandingPoint;
+    [SerializeField] private float maxBallDistance;
 
     public GameObject SphereLandingPoint => sphereLandingPoint;
+    public float MaxBallDistance => maxBallDistance;
 
     /// <summary>
     /// Reset level's rotation, set given position and activate gameObject.

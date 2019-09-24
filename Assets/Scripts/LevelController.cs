@@ -1,10 +1,6 @@
-﻿using System.Collections;
-using System.Collections.Generic;
-using System.Numerics;
+﻿using System.Collections.Generic;
 using UnityEngine;
-using UnityEngine.Experimental.PlayerLoop;
 using UnityEngine.SceneManagement;
-using Quaternion = UnityEngine.Quaternion;
 using Vector3 = UnityEngine.Vector3;
 
 /// <summary>
@@ -22,6 +18,11 @@ public class LevelController : Singleton<LevelController>
     private bool isTransitioning;
     private Level prevLevel;
 
+    private void Update()
+    {
+        CheckBallDistance();
+    }
+
     private void FixedUpdate()
     {
         if (isTransitioning)
@@ -32,6 +33,19 @@ public class LevelController : Singleton<LevelController>
             {
                 FinishLevelTransition();
             }
+        }
+    }
+
+    /// <summary>
+    /// Check distance from ball to current level and restart scene if distance larger than threshold.
+    /// </summary>
+    private void CheckBallDistance()
+    {
+        if (isTransitioning) return;
+        float distance = Vector3.Distance(ball.transform.position, levels[currentLevelId].transform.position);
+        if (distance >= levels[currentLevelId].MaxBallDistance)
+        {
+            RestartScene();
         }
     }
 
